@@ -37,17 +37,47 @@ class APIManager {
           
         }else{
           
-          completion(resultFrmCompletion: "Nsurl Success")
-          print(dataBlock!)
+//         . completion(resultFrmCompletion: "Nsurl Success")
+//          print(dataBlock!)
+          
+          do{
+            
+            if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? [String: AnyObject]{
+              
+              print(jsonObj)
+              
+              //priority
+              
+              let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+              dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                
+                dispatch_async(dispatch_get_main_queue()){
+                  
+                  completion(resultFrmCompletion: "JSON Success")
+                }
+                
+              }
+              
+              
+              
+              
+            }
+            
+            
+          }catch{
+            dispatch_async(dispatch_get_main_queue()){
+              
+              completion(resultFrmCompletion: "JSON Error")
+            }
+            
+          }
+          
+         //else ends
         }
-        
     
       }
       
-      
-      
-    }
-    
+        }
     
     taskObj.resume()
     
