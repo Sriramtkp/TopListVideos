@@ -97,11 +97,11 @@
 		D9E5C2221DAA477B0096B89B /* TopListVideos */ = {
 			isa = PBXGroup;
 			children = (
-				D9E5C2231DAA477B0096B89B /* AppDelegate.swift */,
-				D9E5C2251DAA477B0096B89B /* ViewController.swift */,
-				D9E5C2271DAA477B0096B89B /* Main.storyboard */,
+				D9E5C2541DAA4BD10096B89B /* Supporting Files */,
+				D9E5C2511DAA4B500096B89B /* Modal */,
+				D9E5C2531DAA4B970096B89B /* View */,
+				D9E5C2521DAA4B570096B89B /* Controller */,
 				D9E5C22A1DAA477B0096B89B /* Assets.xcassets */,
-				D9E5C22C1DAA477B0096B89B /* LaunchScreen.storyboard */,
 				D9E5C22F1DAA477B0096B89B /* Info.plist */,
 			);
 			path = TopListVideos;
@@ -123,6 +123,38 @@
 				D9E5C2451DAA477B0096B89B /* Info.plist */,
 			);
 			path = TopListVideosUITests;
+			sourceTree = "<group>";
+		};
+		D9E5C2511DAA4B500096B89B /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Modal;
+			sourceTree = "<group>";
+		};
+		D9E5C2521DAA4B570096B89B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D9E5C2251DAA477B0096B89B /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D9E5C2531DAA4B970096B89B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D9E5C2271DAA477B0096B89B /* Main.storyboard */,
+				D9E5C22C1DAA477B0096B89B /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		D9E5C2541DAA4BD10096B89B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D9E5C2231DAA477B0096B89B /* AppDelegate.swift */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TopListVideos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Shri.TopListVideos;
@@ -415,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TopListVideos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Shri.TopListVideos;
