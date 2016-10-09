@@ -42,7 +42,9 @@ class APIManager {
           
           do{
             
-            if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? [String: AnyObject]{
+//            if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? [String: AnyObject] -- is changed as JSONDictionary
+              if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? JSONDictionary
+            {
               
               print(jsonObj)
               
