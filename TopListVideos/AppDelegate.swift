@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internetCheckGlObj = Reachability.reachabilityForInternetConnection()
     internetCheckGlObj?.startNotifier()
+    statusChange(internetCheckGlObj!)
+    
     
     return true
   }

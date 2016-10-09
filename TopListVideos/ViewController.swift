@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+  var videosArrVC = [VideosClass]()
   
   
   @IBOutlet weak var labelNetStatus: UILabel!
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
 
   // Helper func
 //  func didLoadData(result: String)
-  func didLoadData(videosArray : [VideosClass])  {
+  func didLoadData(videosArrVC: [VideosClass])  {
     
   print(reachStatusGlObj)
 //    print("func in viewDidLoad is \(result)")
@@ -77,7 +78,7 @@ class ViewController: UIViewController {
 //      
 //    }
     
-    for (index, item) in videosArray.enumerate() {
+    for (index, item) in videosArrVC.enumerate() {
       print("\(index) = \(item.vNameVC)")
     }
     
