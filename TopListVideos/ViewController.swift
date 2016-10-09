@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     //step 1
     
     let api = APIManager ()
-    api.loadData("https://itunes.apple.com/in/rss/topmusicvideos/limit=10/json",completion: didLoadData)
+    api.loadData("https://itunes.apple.com/in/rss/topmusicvideos/limit=200/json",completion: didLoadData)
     
 //    api.loadData("https://itunes.apple.com/in/rss/topmusicvideos/limit=10/json"){
 //      
@@ -37,20 +37,39 @@ class ViewController: UIViewController {
 
 
   // Helper func
-  func didLoadData(result: String)  {
+//  func didLoadData(result: String)
+  func didLoadData(videosArray : [VideosClass])  {
     
-    print("func in viewDidLoad is \(result)")
+//    print("func in viewDidLoad is \(result)")
     
     
-    let alertObj = UIAlertController(title: (result), message: "hi R.D", preferredStyle: .Alert)
+//    let alertObj = UIAlertController(title: (result), message: "hi R.D", preferredStyle: .Alert)
+//    
+//    let okAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
+//      
+//      //do your stuff
+//    }
+//    
+//    alertObj.addAction(okAction)
+//    self.presentViewController(alertObj, animated: true, completion: nil)
     
-    let okAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
-      
-      //do your stuff
+//    for videoItem in videosArray {
+//      print("one of the objects in VideoArray-- \(videoItem.vNameVC)")
+//    }
+    
+//    for i in 0..<videosArray.count {
+//      
+//      print(i)
+//      let video = videosArray[i]
+//      
+//      print(video.vNameVC)
+//      
+//      
+//    }
+    
+    for (index, item) in videosArray.enumerate() {
+      print("\(index) = \(item.vNameVC)")
     }
-    
-    alertObj.addAction(okAction)
-    self.presentViewController(alertObj, animated: true, completion: nil)
     
     
     

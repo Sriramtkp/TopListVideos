@@ -10,8 +10,8 @@ import Foundation
 
 class APIManager {
   
-  //func loadData(urlStr: String, completion: (result: String)) -> Void
-  func loadData(urlStr: String, completion: (resultFrmCompletion: String) -> Void) {
+  //func loadData(urlStr: String, completion: (resultFrmCompletion: String)) -> Void
+  func loadData(urlStr: String, completion: [VideosClass] -> Void) {
     
     
     let configObj = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -33,32 +33,78 @@ class APIManager {
         
         if errorBlock != nil{
           
-          completion(resultFrmCompletion: (errorBlock?.localizedDescription)!)
+//          completion(resultFrmCompletion: (errorBlock?.localizedDescription)!)
+          print( errorBlock?.localizedDescription)
           
         }else{
           
 //         . completion(resultFrmCompletion: "Nsurl Success")
 //          print(dataBlock!)
           
-          do{
+//          do{
+//            
+////            if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? [String: AnyObject] -- is changed as JSONDictionary
+//              if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? JSONDictionary
+//                
+//                
+//            {
+//
+//              print(jsonObj)
+//              
+//              //priority
+//              
+//              let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+//              dispatch_async(dispatch_get_global_queue(priority, 0)) {
+//                
+//                dispatch_async(dispatch_get_main_queue()){
+//                  
+//                  completion(resultFrmCompletion: "JSON Success")
+//                }
+//              }
+//              }
+//            
+//            
+//          }
+//          catch{
+//            dispatch_async(dispatch_get_main_queue()){
+//              
+//              completion(resultFrmCompletion: "JSON Error")
+//            }
+//            
+//          }
+          
+          do {
             
-//            if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? [String: AnyObject] -- is changed as JSONDictionary
-              if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? JSONDictionary
+            if let jsonObj = try NSJSONSerialization.JSONObjectWithData(dataBlock!, options: .AllowFragments) as? JSONDictionary, feedFrmJson = jsonObj["feed"] as? JSONDictionary, entriesFromJsn = feedFrmJson["entry"] as? JSONArray
+            
             {
+            
+              var videosObj = [VideosClass]()
               
-              print(jsonObj)
-              
-              //priority
-              
-              let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-              dispatch_async(dispatch_get_global_queue(priority, 0)) {
+              for entryLoop in entriesFromJsn {
                 
-                dispatch_async(dispatch_get_main_queue()){
-                  
-                  completion(resultFrmCompletion: "JSON Success")
-                }
+                let entryObj = VideosClass(data: entryLoop as! JSONDictionary)
+                videosObj.append(entryObj)
                 
               }
+              
+              
+              
+              let iCount = videosObj.count
+              print("iTunesAPIManager total count --> \(iCount)")
+              print("")
+              
+              
+              let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+              
+                              dispatch_async(dispatch_get_main_queue()){
+              
+//                                completion(resultFrmCompletion: "JSON Success")
+                                completion(videosObj)
+                                
+                              }
+                            }
               
               
               
@@ -69,10 +115,18 @@ class APIManager {
           }catch{
             dispatch_async(dispatch_get_main_queue()){
               
-              completion(resultFrmCompletion: "JSON Error")
-            }
-            
+//                            completion(resultFrmCompletion: "JSON Error")
+                          }
           }
+          
+          
+          
+          
+          
+          
+          
+          
+          
           
          //else ends
         }
