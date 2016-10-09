@@ -10,12 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+  
+  
+  @IBOutlet weak var labelNetStatus: UILabel!
+  
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.  #selector(AppDelegate.reachChanged
     
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.statusChanged), name: "ReachStatusChanged", object: nil)
     
-    //step 1
+    statusChanged()
+    
+    //step 1  Call API
     
     let api = APIManager ()
     api.loadData("https://itunes.apple.com/in/rss/topmusicvideos/limit=200/json",completion: didLoadData)
@@ -40,6 +49,7 @@ class ViewController: UIViewController {
 //  func didLoadData(result: String)
   func didLoadData(videosArray : [VideosClass])  {
     
+  print(reachStatusGlObj)
 //    print("func in viewDidLoad is \(result)")
     
     
@@ -84,6 +94,40 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  
+  
+  func statusChanged()  {
+    
+    
+    switch reachStatusGlObj {
+    case NOACCESS : self.labelNetStatus.text = "No internet"
+    print(NOACCESS)
+      self.labelNetStatus.textColor = UIColor.redColor()
+    case WIFI : self.labelNetStatus.text = "WiFi"
+    print("Wifi")
+    self.labelNetStatus.textColor = UIColor.greenColor()
+    case  WANN : self.labelNetStatus.text = "Cellular Data"
+    self.labelNetStatus.textColor = UIColor.blueColor()
+    default: return
+    }
+    
+//    NSNotificationCenter.defaultCenter().postNotificationName("ReachStatusChanged", object: nil)
+    
+    
+  }
+  
+
+  
+  deinit{
+    
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+    
+  }
+  
+  
+  
+  
+  
 
 //ViewController ends
 }
