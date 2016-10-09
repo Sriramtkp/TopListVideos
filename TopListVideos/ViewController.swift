@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
   var videosArrVC = [VideosClass]()
   
   
   @IBOutlet weak var labelNetStatus: UILabel!
   
+  @IBOutlet weak var tableViewOutlet: UITableView!
   
   
   override func viewDidLoad() {
@@ -77,12 +78,13 @@ class ViewController: UIViewController {
 //      
 //      
 //    }
+    self.videosArrVC = videosArrVC
     
     for (index, item) in videosArrVC.enumerate() {
       print("\(index) = \(item.vNameVC)")
     }
     
-    
+    tableViewOutlet.reloadData()
     
     
    //didLoadData ends
@@ -117,7 +119,6 @@ class ViewController: UIViewController {
     
   }
   
-
   
   deinit{
     
@@ -126,9 +127,27 @@ class ViewController: UIViewController {
   }
   
   
+  //MARK : TableView funcs
   
+  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   
+  {
+   return videosArrVC.count
+  }
   
+  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    
+    
+    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    
+    let videoObj = videosArrVC[indexPath.row]
+    cell.textLabel?.text = ("\(indexPath.row + 1)")
+    cell.detailTextLabel?.text = videoObj.vNameVC
+    
+    return cell
+  }
+  
+
 
 //ViewController ends
 }
