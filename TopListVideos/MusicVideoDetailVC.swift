@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class MusicVideoDetailVC: UIViewController {
 
@@ -56,7 +58,35 @@ class MusicVideoDetailVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
+  
+  @IBAction func playVideoBtn(sender: UIBarButtonItem) {
     
+    let url = NSURL(string: videos.vVideoUrlVC)!
+    let playerObj = AVPlayer(URL: url)
+    let playerView = AVPlayerViewController()
+    
+    playerView.player = playerObj
+    
+    self.presentViewController(playerView, animated: true) { 
+      
+      playerView.player?.play()
+      
+    }
+    
+    
+    
+    
+    
+  }
+  
+  
+  
+  
+  @IBAction func extensionBtn(sender: UIBarButtonItem) {
+  }
+  
+  
 
     /*
     // MARK: - Navigation
