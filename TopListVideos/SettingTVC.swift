@@ -10,6 +10,8 @@ import UIKit
 
 class SettingTVC: UITableViewController {
 
+//  let defaults = NSUserDefaults.standardUserDefaults()
+
   
   //MARK: Outlets
   
@@ -40,6 +42,15 @@ class SettingTVC: UITableViewController {
       NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingTVC.preferredFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
       
       securityTouchIDSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("TouchID")
+      
+      
+      if (NSUserDefaults.standardUserDefaults().objectForKey("APICount") != nil) {
+        
+        let theVaue = NSUserDefaults.standardUserDefaults().objectForKey("APICount")
+        apiCountLabel.text = "\(theVaue!)"
+        sliderCount.value = (theVaue!.floatValue)!
+//        sliderCount.value = Float(theVaue)!
+      }
       
       
       }
@@ -75,10 +86,27 @@ class SettingTVC: UITableViewController {
       defaults.setBool(false, forKey: "TouchID")
     }
     
+  }
+  
+  @IBAction func bestQualityAction(sender: UISwitch) {
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    defaults.setObject(Int(sliderCount.value), forKey: "APICount")
+    apiCountLabel.text = ("\(Int(sliderCount.value))")
+    
     
     
     
   }
   
-  //MARK: Class Ends
+  
+  
+  
+  
+  
+  
+  
+  
+    //MARK: Class Ends
     }

@@ -317,7 +317,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-Vq-Cos">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wpa-Vq-Cos">
                                                     <rect key="frame" x="543" y="26" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="touchIDSecAction:" destination="Jhn-fe-beI" eventType="valueChanged" id="EUp-Xr-WBy"/>
@@ -351,6 +351,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-GR-yHS">
                                                     <rect key="frame" x="543" y="26" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="bestQualityAction:" destination="Jhn-fe-beI" eventType="valueChanged" id="7ux-DR-x7q"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -391,7 +394,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="u9j-z2-hxW">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="u9j-z2-hxW">
                                                     <rect key="frame" x="46" y="27" width="509" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="evq-H7-Q5p"/>
