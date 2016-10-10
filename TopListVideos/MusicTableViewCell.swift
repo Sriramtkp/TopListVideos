@@ -48,6 +48,13 @@ class MusicTableViewCell: UITableViewCell {
     rankLabel.text = "\(videoObj!.vRankVC)"
 //    imageViewCell.image = UIImage(named: "NoImage")
     
+    
+    titleLabel.font =  UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+    rankLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+    
+    
+    
+    
     if videoObj?.vImageData != nil {
       
       imageViewCell.image = UIImage(data: videoObj!.vImageData!)
