@@ -9,6 +9,12 @@
 import Foundation
 
 class VideosClass {
+  
+  
+  var vRankVC = 0
+  
+  
+  
   //Data encapsultion
   private var _vNameVC : String
   private var _vImgUrlVC: String

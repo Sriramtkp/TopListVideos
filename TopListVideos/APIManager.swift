@@ -81,9 +81,13 @@ class APIManager {
             
               var videosObj = [VideosClass]()
               
-              for entryLoop in entriesFromJsn {
+//              for entryLoop in entriesFromJsn
+              for (index, entryLoop ) in entriesFromJsn.enumerate() {
                 
                 let entryObj = VideosClass(data: entryLoop as! JSONDictionary)
+                
+                entryObj.vRankVC = index + 1
+                
                 videosObj.append(entryObj)
                 
               }
