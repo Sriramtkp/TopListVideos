@@ -49,7 +49,7 @@ class MusicVideoTVC: UITableViewController {
   
   
   
-  // Helper func
+  //MARK: Helper func
   //  func didLoadData(result: String)
   func didLoadData(videosArrVC: [VideosClass])  {
     
@@ -98,7 +98,7 @@ class MusicVideoTVC: UITableViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
+  //MARK:displayAlert
   func displayAlert(titleMsg: String, MessageTxt: String) {
     
     dispatch_async(dispatch_get_main_queue(), {
@@ -119,10 +119,9 @@ class MusicVideoTVC: UITableViewController {
     
   }
   
+  //MARK: Wifi Status
   func statusChanged()  {
-    
-    
-    switch reachStatusGlObj {
+       switch reachStatusGlObj {
     case NOACCESS :
     print(NOACCESS)
       
@@ -148,13 +147,9 @@ class MusicVideoTVC: UITableViewController {
       runAPI()
     }
     
-    
-    
-    
-    
-  }
+      }
   
-  
+  //MARK: removeObserver
   deinit{
     
     NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
@@ -162,7 +157,19 @@ class MusicVideoTVC: UITableViewController {
   }
   
   
-  //MARK : TableView funcs
+  //MARK: Storyboard
+  
+  private struct storyboard {
+    
+    
+    static let CellReusableIdentifier = "cell"
+    
+    
+  }
+  
+  
+  
+  //MARK: TableView funcs
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     
@@ -173,16 +180,20 @@ class MusicVideoTVC: UITableViewController {
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
     
     
-    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCellWithIdentifier(storyboard.CellReusableIdentifier, forIndexPath: indexPath) as! MusicTableViewCell
     
-    let videoObj = videosArrVC[indexPath.row]
-    cell.textLabel?.text = ("\(indexPath.row + 1)")
-    cell.detailTextLabel?.text = videoObj.vNameVC
+//    let videoObj = videosArrVC[indexPath.row]
+//    cell.textLabel?.text = ("\(indexPath.row + 1)")
+//    cell.detailTextLabel?.text = videoObj.vNameVC
+
+    cell.videoObj = videosArrVC[indexPath.row]
+    
+    
     
     return cell
   }
   
   
   
-  //ViewController ends
+  //MARK: ViewController ends
 }
