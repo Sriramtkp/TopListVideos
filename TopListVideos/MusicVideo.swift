@@ -139,7 +139,7 @@ class VideosClass {
    
     
     if let video = data ["link"] as? JSONArray,
-    vid = video[0] as? JSONDictionary,
+    vid = video[1] as? JSONDictionary,
     videoGraph = vid["attributes"] as? JSONDictionary,
     attributes = videoGraph ["href"] as? String
     {

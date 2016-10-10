@@ -196,10 +196,16 @@
                     <toolbarItems>
                         <barButtonItem systemItem="play" id="CVl-dD-JOq">
                             <color key="tintColor" red="1" green="0.35740876677852351" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="playVideoBtn:" destination="hdb-XS-iWp" id="eyT-t8-Px9"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="K9f-Ic-zdj"/>
                         <barButtonItem systemItem="action" id="Roc-mK-KvI">
                             <color key="tintColor" red="1" green="0.3574087668" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="extensionBtn:" destination="hdb-XS-iWp" id="tmD-SA-BVp"/>
+                            </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <connections>
@@ -399,6 +405,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="evq-H7-Q5p"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="sliderAction:" destination="Jhn-fe-beI" eventType="valueChanged" id="rKo-2C-imj"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
                                             <constraints>

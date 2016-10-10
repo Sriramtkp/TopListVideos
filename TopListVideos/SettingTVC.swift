@@ -46,10 +46,9 @@ class SettingTVC: UITableViewController {
       
       if (NSUserDefaults.standardUserDefaults().objectForKey("APICount") != nil) {
         
-        let theVaue = NSUserDefaults.standardUserDefaults().objectForKey("APICount")
-        apiCountLabel.text = "\(theVaue!)"
-        sliderCount.value = (theVaue!.floatValue)!
-//        sliderCount.value = Float(theVaue)!
+        let theVaue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as! Int
+        apiCountLabel.text = "\(theVaue)"
+        sliderCount.value = Float(theVaue)
       }
       
       
@@ -90,18 +89,21 @@ class SettingTVC: UITableViewController {
   
   @IBAction func bestQualityAction(sender: UISwitch) {
     
+   
+      }
+  
+  
+  
+  @IBAction func sliderAction(sender: UISlider) {
+    
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     
     defaults.setObject(Int(sliderCount.value), forKey: "APICount")
     apiCountLabel.text = ("\(Int(sliderCount.value))")
     
     
-    
-    
   }
-  
-  
-  
   
   
   

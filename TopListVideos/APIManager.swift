@@ -110,9 +110,6 @@ class APIManager {
                               }
                             }
               
-              
-              
-              
             }
             
             
@@ -123,25 +120,14 @@ class APIManager {
                           }
           }
           
-          
-          
-          
-          
-          
-          
-          
-          
-          
          //else ends
         }
     
       }
-      
-        }
+              }
     
     taskObj.resume()
-    
-    
+        
   //loadData ends
   }
   
