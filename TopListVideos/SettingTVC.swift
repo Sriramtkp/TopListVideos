@@ -34,18 +34,17 @@ class SettingTVC: UITableViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      
       
       title = "Setting"
       
       NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingTVC.preferredFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
       
+      securityTouchIDSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("TouchID")
       
       
-      
-    }
+      }
 
+  
   
   func preferredFont() {
     aboutLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
@@ -64,6 +63,22 @@ class SettingTVC: UITableViewController {
   }
   
   
+  @IBAction func touchIDSecAction(sender: UISwitch) {
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    if securityTouchIDSwitch.on {
+      
+      defaults.setBool(securityTouchIDSwitch.on, forKey: "TouchID")
+      
+    }else{
+      defaults.setBool(false, forKey: "TouchID")
+    }
+    
+    
+    
+    
+  }
   
   //MARK: Class Ends
     }
