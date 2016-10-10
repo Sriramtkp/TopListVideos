@@ -22,6 +22,11 @@ class MusicVideoTVC: UITableViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.  #selector(AppDelegate.reachChanged
     
+    
+    self.title = "iTunes Top 10 Music Videos"
+    self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.redColor()]
+    
+    
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.statusChanged), name: "ReachStatusChanged", object: nil)
     
     statusChanged()
