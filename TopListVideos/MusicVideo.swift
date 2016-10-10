@@ -29,7 +29,7 @@ class VideosClass {
   private var _vReleaseDtVC : String
 
   //this var gets created from UI
-  var imageData : NSData?
+  var vImageData : NSData?
   
   
   // Make getter
@@ -123,7 +123,9 @@ class VideosClass {
     
     if let imge = data["im:image"] as? JSONArray, image = imge[1] as? JSONDictionary,  imgUrl = image ["label"] as? String
     {
-      _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("71x53", withString: "600x600")
+//      _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("71x53", withString: "426x318")
+       _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("71x53", withString: "71x53")
+      
     }
       
     else{
