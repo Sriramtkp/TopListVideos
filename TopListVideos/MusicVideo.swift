@@ -205,7 +205,7 @@ class VideosClass {
     
     if let genre = data ["category"] as? JSONDictionary,
     attributes = genre ["attributes"] as? JSONDictionary,
-    term = attributes ["attributes"] as? String
+    term = attributes ["term"] as? String
     {
       self._vGenreVC = term
       
