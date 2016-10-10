@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingTVC: UITableViewController {
+class SettingTVC: UITableViewController, MFMailComposeViewControllerDelegate {
 
 //  let defaults = NSUserDefaults.standardUserDefaults()
 
@@ -76,7 +77,7 @@ class SettingTVC: UITableViewController {
     
   }
   
-  
+  //MARK: IBActions
   @IBAction func touchIDSecAction(sender: UISwitch) {
     
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -109,7 +110,51 @@ class SettingTVC: UITableViewController {
     
   }
   
+  //MARK: didSelect TableView func
   
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if indexPath.section == 0 && indexPath.row == 1 {
+      
+      let mailComposeVC = configureMail()
+      
+      if MFMailComposeViewController.canSendMail() {
+
+      self.presentViewController(mailComposeVC, animated: true, completion: nil)
+        
+      }else{
+        mailAlert()
+      }
+      
+    }
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+  }
+  
+  func configureMail() -> MFMailComposeViewController {
+    
+    let msgVC = MFMailComposeViewController()
+    msgVC.mailComposeDelegate = self
+    msgVC.setSubject("Feedback")
+    msgVC.setToRecipients(["sriramrajendrantkp@yahoo.in"])
+    msgVC.setMessageBody("Hi", isHTML: false)
+    
+    return msgVC
+    
+    
+    
+  }
+  
+  func mailAlert()  {
+    print("Error in mail")
+  }
+  
+  func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    
+    
+    
+    self.dismissViewControllerAnimated(true, completion: nil)
+  }
   
   
   
