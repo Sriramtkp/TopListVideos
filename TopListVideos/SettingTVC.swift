@@ -49,6 +49,10 @@ class SettingTVC: UITableViewController {
         let theVaue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as! Int
         apiCountLabel.text = "\(theVaue)"
         sliderCount.value = Float(theVaue)
+      }else{
+        sliderCount.value = 10.0
+        apiCountLabel.text = ("\(Int(sliderCount.value))")
+        
       }
       
       

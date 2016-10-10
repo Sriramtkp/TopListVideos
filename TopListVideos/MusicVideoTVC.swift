@@ -12,6 +12,8 @@ class MusicVideoTVC: UITableViewController {
 
   var videosArrVC = [VideosClass]()
   
+  var limits = 10
+  
   
   @IBOutlet weak var labelNetStatus: UILabel!
   
@@ -23,8 +25,7 @@ class MusicVideoTVC: UITableViewController {
     // Do any additional setup after loading the view, typically from a nib.  #selector(AppDelegate.reachChanged
     
     
-    self.title = "iTunes Top 10 Music Videos"
-    self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.redColor()]
+    
     
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MusicVideoTVC.statusChanged), name: "ReachStatusChanged", object: nil)
@@ -41,11 +42,36 @@ class MusicVideoTVC: UITableViewController {
   }
   
   
+  //MARK: getAPI
+  
+  func getAPI()  {
+    
+    if (NSUserDefaults.standardUserDefaults().objectForKey("APICount") != nil) {
+      
+      let theValue = NSUserDefaults.standardUserDefaults().objectForKey("APICount") as! Int
+      limits = theValue
+      
+    }
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss"
+    let rfs = formatter.stringFromDate(NSDate())
+    
+    
+    refreshControl?.attributedTitle = NSAttributedString(string: "\(rfs)")
+    
+  }
+  
+  
+  
   func runAPI() {
     //step 1  Call API
+    getAPI()
+    
+    
+    
     
     let api = APIManager ()
-    api.loadData("https://itunes.apple.com/in/rss/topmusicvideos/limit=200/json",completion: didLoadData)
+    api.loadData("https://itunes.apple.com/in/rss/topmusicvideos/limit=\(limits)/json",completion: didLoadData)
     
     //    api.loadData("https://itunes.apple.com/in/rss/topmusicvideos/limit=10/json"){
     //
@@ -104,9 +130,10 @@ class MusicVideoTVC: UITableViewController {
       print("\(index) = \(item.vNameVC)")
     }
     
+    self.title = "iTunes Top \(limits) Music Videos"
+    self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.redColor()]
     tableViewOutlet.reloadData()
-    
-    
+
     //didLoadData ends
   }
   
@@ -136,6 +163,19 @@ class MusicVideoTVC: UITableViewController {
     })
     
   }
+  
+  
+  
+  @IBAction func refreshAction(sender: UIRefreshControl) {
+    
+    refreshControl?.endRefreshing()
+    
+    
+    runAPI()
+    
+    
+  }
+  
   
   //MARK: Wifi Status
   func statusChanged()  {
@@ -181,10 +221,8 @@ class MusicVideoTVC: UITableViewController {
   
   private struct storyboard {
     
-    
     static let CellReusableIdentifier = "cell"
     static let segueIdentifier = "musicDetail"
-    
     
   }
   
