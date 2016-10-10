@@ -123,9 +123,10 @@ class VideosClass {
     
     if let imge = data["im:image"] as? JSONArray, image = imge[1] as? JSONDictionary,  imgUrl = image ["label"] as? String
     {
-//      _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("71x53", withString: "426x318")
-       _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("71x53", withString: "71x53")
-      
+      _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
+//       _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("71x53", withString: "71x53")
+//      let string2del = "width=\"\" height=\"\""
+//      _vImgUrlVC = imgUrl.stringByReplacingOccurrencesOfString("600x600", withString: string2del)
     }
       
     else{
